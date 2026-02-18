@@ -1,0 +1,84 @@
+Note: Different color only means different functions, not different people.
+
+
+Make a function for sign-in
+Tell the user Welcome to Signing in Function or something like that
+First, ask the user for username and password
+Take the username and password and search it up in the CSV file
+if the username is “Admin” and the password is “ChangeMe4”:
+	Run the admin function
+Admin function:
+	Welcome admin
+	Display a numbered list with usernames and passwords
+	
+	Change, remove, add scores, or quit
+	If change:
+		Ask the admin to select a number
+		Display specific information about that user
+		Ask the admin if they want to change 1. Username, 2. Password, or 3. Score
+	If remove:
+		Ask the admin which user account to remove
+		Remove all account information
+		Reset numbers
+	If add:
+		Admin is prompted to enter a username, password, and score
+		Insert account into CSV file
+	If quit:
+		Log-in function
+IF the username and password match, say it's valid
+say something like, your information is saved
+bring them to the game that Zane and Briggs are working on
+Using the username and password, get the highscore information
+IF there is no matching data, tell the user that it is invalid and try again.
+Make a function for checking overlapping usernames with parameters
+Take the username that the user input in the function for signing up, and basically ‘search it up.’ I already made a function like that, so I will use that
+If the search is false
+Tell the user that their username is original and good
+If the search is true
+Tell the user that the username is already taken
+
+Function for password strength checker with the parameter of password 
+Take the password that the user gives
+ Check if password is at least 8 characters
+ print yes or no, and print yes if valid, and add a point
+ Check for uppercase letters
+ print yes or no, and print yes if valid, and add a  point
+ do variable equals false for everything
+ do if for everything
+ Check for lowercase letters
+ print yes or no, and print yes if valid, and add a  point
+ Check for lowercase letters
+ print yes or no, and print yes if valid, and add a  point
+ Check for numbers
+ print yes or no, and print yes if valid, and adda  point
+ Check for special characters
+ print yes or no, and print yes if valid, and add a point
+make a variable for special characters
+If the password contains a character in the special character variable, set the variable to true.
+If the password is “password,” tell the user that they are dumb
+Make a variable for saying if it's good or not, maybe something like “validity_of_password.”
+If the score <= 2:
+    Say "Password strength: Weak."
+Validity_of_password equals False
+If the  score == 3:
+    Say "Password strength: Moderate."
+	Validity_of_password equals true
+elif score == 4:
+    Say "Password strength: Strong."
+	Validity_of_password equals true
+elif score == 5:
+    Say "Password strength: Very Strong."
+	Validity_of_password equals true
+    Show score
+
+
+Make a function for signing up
+Say welcome to the signing up function
+first, ask for a new username
+call the function for checking overlapping usernames
+And then ask for a password
+call the function for the password strength checker with the password given
+if the password is false, make it so they have to make a new password
+if it's all valid, add the information of username and password, and set the score to 0
+send the user to the game
+
