@@ -1,11 +1,12 @@
 #BH, KH, ZC 2nd high_score_tracker.py
 import random
 def search():
+    #Ken's search function here
     return username_exists
 def check_overlapping():
     search()
     if username_exists == False:
-                
+               #??? 
     else:
         print("That username has already been taken. Please try again.")
 def strength_checker():
@@ -48,6 +49,7 @@ def sign_in():
          strength_checker()
          print("Your username and password have been saved, enjoy the game!\n")
 def sign_up():
+#Define sign up function here
 def logout():
         login_dif_account = input("Would you like to exit (e), or login with a different account (l)?\n")
         if login_dif_account == "e":
@@ -66,6 +68,7 @@ def game():
         starts_game = random.randint (0, 1)
         if starts_game == 0:
         else:
+             #Zane's tic-tac-toe game
 def menu():
     print("Welcome to the High Score Tracker!\n")
     choice = input(" Would you like to play a game of tic-tac-toe? y/n\n")
