@@ -57,18 +57,6 @@ def logout():
                 return
         if login_dif_account == "l":
                 sign_in()
-def game():
-        token_choice = input("Time for a game of Tic-Tac-Toe! Would you like to be X or O?").lower()
-        if token_choice == "x":
-                token = "X"
-        if token_choice == "o":
-                token = "O"
-        Game_data = {
-        }
-        starts_game = random.randint (0, 1)
-        if starts_game == 0:
-        else:
-             #Zane's tic-tac-toe game
 def menu():
     print("Welcome to the High Score Tracker!\n")
     choice = input(" Would you like to play a game of tic-tac-toe? y/n\n")
