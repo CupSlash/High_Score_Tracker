@@ -10,73 +10,37 @@ score = 0
 # Check if password is at least 8 characters
 # print yes or no and print yes if valid and add point
 def length_check(password):
-    if len(password) >= 8:
-        print("Length (8+ characters): Yes") # print yes or no 
-        return 1 # add point if yes
-    else:
-        print("Length (8+ characters): No") # print yes or no
-        return 0
-
-score += length_check(password)
+    ok = len(password) >= 8
+    print(f"Length (8+ characters): {'yes' if ok else 'no'}") # print yes or no 
+    return 1 if ok else 0
 
 # Check for uppercase letters
 # print yes or no and print yes if valid and add point
 # do variable equals flase for every thing
 # do if for everything
 def uppercase_check(password):
-    upper = False
-    for letter in password:
-        if letter >= 'A' and letter <= 'Z':
-            upper = True
-    if upper:
-        print("Contains uppercase: Yes") # print yes or no 
-        return 1
-    else:
-        print("Contains uppercase: No")
-        return 0
+    ok = any('A' <= letter <= 'Z' for letter in password)
+    print(f"Contains uppercase: {'Yes' if ok else 'No'}")
+    return 1 if ok else 0
 # Check for lowercase letters
 # print yes or no and print yes if valid and add point
 def lowercase_check(password):
-    lower = False
-    for letter in password:
-        if letter >= 'a' and letter <= 'z':
-            lower = True
-    if lower:
-        print("Contains lowercase: Yes")
-        return 1
-    else:
-        print("Contains lowercase: No")
-        return 0
-
+    ok = any('a' <= letter <= 'z' for letter in password)
+    print(f"Contains lowercase: {'Yes' if ok else 'No'}")
+    return 1 if ok else 0
 # Check for numbers
 # print yes or no and print yes if valid and add point
 def number_check(password):
-    has_number = False
-    for letter in password:
-        if letter >= '0' and letter <= '9':
-            has_number = True
-    if has_number:
-        print("Contains numbers: Yes")
-        return 1
-    else:
-        print("Contains numbers: No")
-        return 0
-
+    ok = any('0' <= letter <= '9' for letter in password)
+    print(f"Contains numbers: {'Yes' if ok else 'No'}")
+    return 1 if ok else 0
 # Check for special characters
 # print yes or no and print yes if valid and add point
 def special_check(password):
     special = "!@#$%^&*()_+-=[]{}|;:,.<>?"
-    has_special = False
-    for letter in password:
-        if letter in special:
-            has_special = True
-    return 1 if has_special else 0
-if special_check(password) == 1:
-    print("Contains special characters: Yes")
-    score += 1
-else:
-    print("Contains special characters: No")
-
+    ok = any(letter in special for letter in password)
+    print(f"Contains special characters: {'Yes' if ok else 'No'}")
+    return 1 if ok else 0
 # Show score
 def calculate_score(password):
     score = 0
