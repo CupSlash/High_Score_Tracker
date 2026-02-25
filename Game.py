@@ -3,8 +3,8 @@ import random
 def game():
     print("Welcome to Tic-Tac-Toe!")
     token = input("Would you like to be X, or O?")
-    board = [1,2,3,4,5,6,7,8,9]
-    token = [0,0,0,0,0,0,0,0,0]
+    board = [1,2,3,4,5,6,7,8,9]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+    token = [0,0,0,0,0,0,0,0,0]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
     game_data = { "scores" : {"win_1" : [board[0],board[1],board[2]], "win_2" : [board[3],board[4],board[5]], "win_3" : [board[6],board[7],board[8]], "win_4" : [board[0],board[3],board[6]], "win_5" : [board[1],board[4],board[7]], "win_6" : [board[2],board[5],board[8]], "win_7" : [board[0],board[4],board[8]], "win_8" : [board[2],board[4],board[6]]} }
     for x in [token[0], token[1], token[2]]:
             print (x)
@@ -29,7 +29,7 @@ def game():
         else:
             return False
         
-        
+         
     def player_turn():
         pass
         for x in [token[0], token[1], token[2]]:
