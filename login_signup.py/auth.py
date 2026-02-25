@@ -44,3 +44,7 @@ def sign_up(username, password):
 
 def login(username, password):
     users = load_users()
+
+
+def main():
+    pass
