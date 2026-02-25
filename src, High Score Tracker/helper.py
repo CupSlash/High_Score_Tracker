@@ -1,6 +1,7 @@
 #BH, KH, ZC 2nd high_score_tracker.py
-database = pass
 import random
+import csv
+database = "src, High Score Tracker\database.csv"
 def strength_checker():
     password_validity = False
     while password_validity == False:
@@ -35,12 +36,9 @@ def strength_checker():
         print("Your password strength is a {total} out of 5.\n")
 def admin():
 		print("Welcome admin")
-		#Display a numbered list with usernames and passwords
-		
-		#Change, remove, add scores, or quit
 		if change:
 			number = input("Please enter a number.")
-			Display specific information about that user
+			print(specific information about that user)
 			choice = print("Would you like to change \n1. Username, \n2. Password, or \n3. Score?\n")
 		if remove:
 			choice = input("which user account would you like to remove?")
@@ -51,37 +49,18 @@ def admin():
 			Insert account into CSV file
 		if quit:
 			sign_in()
-def search():
-    action = input("What would you like to search by\n 1. Numeral\n2. Username\n 3. Password\n 4. Highscore\n 5. Exit\n")
-    if action == "1":
-        search = input("What is the Numeral of the user you want to search: ").strip().lower()
-    elif action == "2":
-        search = input("What is the User's name: ").strip().lower()
-    elif action == "3":
-        pass
-    elif action == "4":
-        pass
-    elif action == "5":
-        pass
-    else:
-        print("Invalid.")
-        return
+def search(username):
+    search_username = username
     matches = []
     for user in database:
-        if search in database[option].lower():
+        if search_username in database:
             matches.append(user)
-    #if any of the matching is 0, tell them there is no book in existence
     if len(matches) == 0:
         print("No matching found")
-        return 
-    #if no probelm, show them their searched book
-    for book in matches:
-        print(book["title"] + " by " + book["author"])
-
+        return False
+    else:
+        return True
 username_exists = True
-def search(): 
-    #Ken's search function here
-    return username_exists
 def check_overlapping(username):
     while True:
         search()
