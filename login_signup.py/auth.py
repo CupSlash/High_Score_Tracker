@@ -47,4 +47,5 @@ def login(username, password):
 
 
 def main():
-    pass
+    while True:
+        choice = input("Do you wanto sign u[ or login? (1 for sign up and 2 for login): ")
