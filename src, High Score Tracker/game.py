@@ -1,7 +1,7 @@
 #BH, KH, ZC 2nd game.py
 import random
 def game():
-	global user_token, computer_token, game_data, board, token
+	global user_token, computer_token, game_data, board, token, start
 	print("Welcome to Tic-Tac-Toe!")
 	token = input("Would you like to be X, or O?")
 	board = [1,2,3,4,5,6,7,8,9]
@@ -43,6 +43,7 @@ def game():
 		if win_check(user_token):
 			user_has_won = True
 			return user_has_won
+		start = 2
 
 		
 		#win_check(user_token)
@@ -72,8 +73,10 @@ def game():
 			if win_check(computer_token):
 				computer_has_won = True
 				return computer_has_won
+		start = 1
 	while 'true':
 		if start == 1:
 			player_turn()
 		if start == 2:
-			
+			computer_turn()
+game()

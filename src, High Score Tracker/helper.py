@@ -52,7 +52,7 @@ def admin():
 		if quit:
 			sign_in()
 def search():
-    action = input"What would you like to search by\n 1. Numeral\n2. Username\n 3. Password\n 4. Highscore\n 5. Exit\n")
+    action = input("What would you like to search by\n 1. Numeral\n2. Username\n 3. Password\n 4. Highscore\n 5. Exit\n")
     if action == "1":
         search = input("What is the Numeral of the user you want to search: ").strip().lower()
     elif action == "2":
