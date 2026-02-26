@@ -3,16 +3,15 @@ import random
 def game():
     print("Welcome to Tic-Tac-Toe!")
     token = input("Would you like to be X, or O?")
+    if token == "X":
+        user_token = "X"
+    else:
+        user_token = "Y"
     board = [1,2,3,4,5,6,7,8,9]
     token = [0,0,0,0,0,0,0,0,0]
+    count = 0
     game_data = { "scores" : {"win_1" : [board[0],board[1],board[2]], "win_2" : [board[3],board[4],board[5]], "win_3" : [board[6],board[7],board[8]], "win_4" : [board[0],board[3],board[6]], "win_5" : [board[1],board[4],board[7]], "win_6" : [board[2],board[5],board[8]], "win_7" : [board[0],board[4],board[8]], "win_8" : [board[2],board[4],board[6]]} }
-    for x in [token[0], token[1], token[2]]:
-            print (x)
-    for x in [token[3], token[4], token[5]]:
-            print (x)
-    for x in [token[6], token[7], token[8]]:
-            print (x)
-    start = random.randint(1,2)
+    start = 1
     if user_token == "X":
         computer_token = "Y"
     else:
@@ -31,16 +30,12 @@ def game():
         
         
     def player_turn():
-        pass
-        for x in [token[0], token[1], token[2]]:
-            print (x)
-        for x in [token[3], token[4], token[5]]:
-            print (x)
-        for x in [token[6], token[7], token[8]]:
-            print (x)
+        print (token[0], token[1], token[2])
+        print (token[3], token[4], token[5])
+        print (token[6], token[7], token[8])
         while True:
-            choice = int(input("please select the index of the square you choose"))
-            if token.index(choice - 1) not in ["X", "O"]:
+            choice = int(input("please select the index of the square you choose:  "))
+            if token.index(choice - 1) not in [0,1,2,3,4,5,6,7,8,]:
                 token[choice - 1] = user_token
             else:
                 print ("that is not a valid square")
@@ -76,7 +71,11 @@ def game():
                         inti += 1
                 if inti > 0:
                     c_win.append(base)
-            com = random.choice(c_win)
+            try:
+                com = random.choice(c_win)
+            except IndexError:
+
+                error = True
             if token.index(com) == computer_token:
                 if win_check(computer_token):
                     computer_has_won = True
@@ -84,7 +83,7 @@ def game():
                 else:
                     return False
         
-    count = 0
+    
     while 'true':
         if start == 1:
             if player_turn():
