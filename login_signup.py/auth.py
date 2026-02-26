@@ -40,7 +40,7 @@ def sign_up(username, password):
         "password": hashed
     }
     save_users(users)
-    return True, "User created succesfully, yay"
+    return True, f"User created succesfully, Your username is {username}"
 
 def login(username, password):
     users = load_users()
@@ -48,4 +48,11 @@ def login(username, password):
 
 def main():
     while True:
-        choice = input("Do you wanto sign u[ or login? (1 for sign up and 2 for login): ")
+        choice = input("Do you want to sign up or login? (1 for sign up and 2 for login): ")
+        if choice == "1":
+
+            sign_up()
+        elif choice == "2":
+            pass
+        else:
+            print("Invalid, please try again.")
