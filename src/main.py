@@ -1,6 +1,6 @@
 #BH, KH, ZC 2nd High Score Tracker
-from src.helper import *
-from src.game import *
+from helper import *
+from game import *
 def menu():
     user_intro()
     print("Welcome to the High Score Tracker!\n")

@@ -3,7 +3,7 @@ import json
 import os
 import hashlib
 
-database = "src, High Score Tracker\database.csv"
+database = "src/database.csv"
 users_file = 'users.json'
 validity = True
 score = 0
