@@ -30,6 +30,8 @@ def play_number_guessing():
             print(f"Correct! The number was {target}.")
             break
 
+    
+
     score = 9 - guesses
     if score < 0:
         score = 0
