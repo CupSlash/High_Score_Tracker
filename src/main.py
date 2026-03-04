@@ -4,7 +4,7 @@ from test_game import play_number_guessing
 #from game import *
 def user_intro():#test
     while True:
-        print("Do you want to: \n1.sign up \n2.sign in\n3. Play game\n4. Logout\n5. Exit ")
+        print("Do you want to: \n1. Sign up \n2. Sign in\n3. Play game\n4. Logout\n5. Exit ")
 
         choice = input("Choose an options(1-5): ")
 
