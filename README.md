@@ -9,11 +9,11 @@ Compete in games of Tic Tac Toe and number guessing with your friends!
 
 ### Dependencies
 
-uses python 3x. imports csv, random, and json. 
+any version of python 3. imports libraries csv, random, and json. 
 
 ### Installing
 
-no installing should be required, it is designed to be run in vs code
+no installing should be required, it is designed to be run in vs code.if you want to try and exxport it, be my guest, but it will be a long and harrowing journy
 
 ### Executing program
 
