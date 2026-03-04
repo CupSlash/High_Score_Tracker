@@ -17,8 +17,7 @@ def user_intro():
                 print("You must be logged in to play. \n")
             else:
                 print(f"Starting game for {auth.current_user}...")
-                final_score = play_number_guessing()
-                auth.record_score(final_score)
+                auth.record_score(count)
 
         elif choice == "4":
             if auth.current_user is None:
