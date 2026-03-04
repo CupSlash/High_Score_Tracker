@@ -27,7 +27,8 @@ def user_intro():#test
             else:
                 auth.logout()
         elif choice == "5":
-            print("Smell you later. hehehehhe")               
+            print("Smell you later. hehehehhe") 
+            break              
         else:
             print("Invalid, please try again.")
 
