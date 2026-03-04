@@ -91,4 +91,3 @@ def game():
                 break
             current = "player"
     return count
-game()
