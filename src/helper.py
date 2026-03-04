@@ -58,7 +58,7 @@ def hash_password(password):
 def sign_up():
     users = load_users()
     
-    print("Creat a new account!")
+    print("Create a new account!")
     
     while True:
         username = input("Enter a new username: ")
