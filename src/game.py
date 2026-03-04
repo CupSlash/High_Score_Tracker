@@ -1,3 +1,4 @@
+#BH, KH, ZC 2nd game.py
 import random
 def game():
     print("Welcome to Tic-Tac-Toe!")
@@ -24,7 +25,6 @@ def game():
         print(f"{board[0]} {board[1]} {board[2]}")
         print(f"{board[3]} {board[4]} {board[5]}")
         print(f"{board[6]} {board[7]} {board[8]}")
-        print()
 
     def win_check(symbol):
         for combo in game_data["scores"].values():
@@ -34,7 +34,7 @@ def game():
         return False
 
     def resetboard():
-        return [i for i, v in enumerate(board) if v not in ("X", "O")]
+        return [i for i, vib in enumerate(board) if vib not in ("X", "O")]
 
     def player_turn():
         print_board()
@@ -89,7 +89,6 @@ def game():
                 count += 1
                 print(f"The computer defeated you! It took {count} turns.")
                 break
-            count += 1
             current = "player"
     return count
 game()
