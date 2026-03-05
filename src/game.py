@@ -73,7 +73,6 @@ def game():
         idx = random.choice(available)
         board[idx] = computer_token
         print(f"Computer chooses square {idx + 1}")
-        print_board()
         return win_check(computer_token)
 
     count = 0

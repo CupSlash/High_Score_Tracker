@@ -9,9 +9,9 @@ def user_intro():
         choice = input("Choose an options(1-6): ")
 
         if choice == "1":
-            auth.sign_up()
+            auth.sign_up(user)
         elif choice == "2":
-            auth.sign_in()
+            user = auth.sign_in()
 
         elif choice == "3":
             if auth.current_user is None:
@@ -19,19 +19,19 @@ def user_intro():
             else:
                 print(f"Starting game for {auth.current_user}...")
                 final_score = play_number_guessing()
-                auth.record_score(final_score)
+                auth.record_score(final_score, user)
 
         elif choice == "6":
             if auth.current_user is None:
                 print("You're not even logged into log out")
             else:
-                auth.logout()
+                auth.logout(user)
         elif choice == "4":
             print (f"starting game for {auth.current_user}...")
             if game():
-                auth.add_tic_tac_toe_win()
+                auth.add_tic_tac_toe_win(user)
         elif choice == "5":
-            auth.view_high_scores()
+            auth.view_high_scores(user)
         elif choice == "7":
             print("Smell you later. hehehehhe") 
             break              

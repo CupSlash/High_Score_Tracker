@@ -2,13 +2,13 @@
 import json
 import os
 import hashlib
-global current_user
+
 
 database = "src/database.csv"
 users_file = 'users.json'
 validity = True
 current_user = None
-def add_tic_tac_toe_win():
+def add_tic_tac_toe_win(current_user):
     
     
     if current_user is None:
@@ -23,7 +23,7 @@ def add_tic_tac_toe_win():
     users[current_user]["tic_tac_toe_wins"] += 1
     save_users(users)
     return True
-def strength_checker():
+def strength_checker(current_user):
     password_validity = False
     while password_validity == False:
         password = input("Please enter your password to play. Your password must match 3 or more of the following requirements: Contains special character (s), contains number (s), contains lowercase letter (s), contains uppercase letter (s), and contains at least 8 characters.\n")
@@ -70,7 +70,7 @@ def save_users(users):
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
-def sign_up():
+def sign_up(current_user):
     users = load_users()
     
     print("Create a new account!")
@@ -110,7 +110,7 @@ def sign_up():
     print("User created succesfully, yay")
 
 def sign_in():
-    
+    global current_user
     users = load_users()
 
     print("Please sign in below\n")
@@ -126,12 +126,12 @@ def sign_in():
     if users[username]["password"] ==  hashed:
         current_user = username
         print("Your username and password have been saved, enjoy the game!\n")
-        return True
+        return current_user
     else:
         print("Incorrect password")
         return False
 
-def logout():
+def logout(current_user):
         
         choice = input("Would you like to exit (e), or login with a different account (l)?\n")
         if choice == "e":
@@ -145,7 +145,7 @@ import csv
 
 high_scores_file = "high_scores.csv"
 
-def record_score(final_score):
+def record_score(final_score, current_user):
     
 
     if current_user is None:
@@ -181,7 +181,7 @@ def record_score(final_score):
     except Exception as e:
         print(f"COuld not record score: {e}")
         return False
-def view_high_scores():
+def view_high_scores(current_user):
     #gets high scores from Json file and prints them in order from highest to lowest
     users = load_users()
     scores = []

@@ -3,7 +3,7 @@
 
 ## Description
 
-Compete in games of Tic Tac Toe with your friends!
+Compete in games of Tic Tac Toe and guessing numbers with friends! create an account, sign in, and play against friends!
 
 ## Getting Started
 
