@@ -2,14 +2,11 @@
 import json
 import os
 import hashlib
-global current_user
 
 database = "src/database.csv"
 users_file = 'users.json'
 validity = True
-current_user = None
-def add_tic_tac_toe_win():
-    
+def add_tic_tac_toe_win(current_user):
     
     if current_user is None:
         print("You must be logged in to record a win\n")
@@ -141,7 +138,6 @@ def sign_up():
     print("User created succesfully, yay")
 
 def sign_in():
-    
     users = load_users()
 
     print("Please sign in below\n")
@@ -149,29 +145,25 @@ def sign_in():
     
     if username not in users:
         print("Sorry man, but that username is not in our database\n")
-        return False
-
+        return None
+    
     password = input("What is your password? ")
     hashed = hash_password(password)
 
     if users[username]["password"] ==  hashed:
-        current_user = username
         print("Your username and password have been saved, enjoy the game!\n")
-        return True
+        return username
     else:
         print("Incorrect password")
-        return False
-
+        return None
 def logout():
         
         choice = input("Would you like to exit (e), or login with a different account (l)?\n")
         if choice == "e":
-                current_user = None
                 print("lets hope you come back. See ya")
-                return
+                return None
         if choice == "l":
-                current_user = None
-                sign_in()
+                return sign_in()
 
 #record the score stuff
 #Kensei Higashi
@@ -179,7 +171,7 @@ import csv
 
 high_scores_file = "high_scores.csv"
 
-def record_score(final_score):
+def record_score(final_score, current_user):
     
 
     if current_user is None:
