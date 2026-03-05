@@ -74,7 +74,6 @@ def passsword_tester(password):
     
     if score <= 2:
         print("Password strength: Weak")
-        return False
     elif score == 3:
         print("Password strength: Moderate")
     elif score == 4:
@@ -126,9 +125,7 @@ def sign_up():
         
     password = input("Enter a password: ")
     passsword_tester(password)
-    if password == False:
-        print("Try a safer password")
-        return False
+
     if password.strip() == "":
         print("Password cannot be empty. \n")
         return False
