@@ -2,13 +2,14 @@
 import json
 import os
 import hashlib
+global current_user
 
 database = "src/database.csv"
 users_file = 'users.json'
 validity = True
 current_user = None
 def add_tic_tac_toe_win():
-    global current_user
+    
     
     if current_user is None:
         print("You must be logged in to record a win\n")
@@ -109,7 +110,7 @@ def sign_up():
     print("User created succesfully, yay")
 
 def sign_in():
-    global current_user
+    
     users = load_users()
 
     print("Please sign in below\n")
@@ -131,7 +132,7 @@ def sign_in():
         return False
 
 def logout():
-        global current_user
+        
         choice = input("Would you like to exit (e), or login with a different account (l)?\n")
         if choice == "e":
                 current_user = None
@@ -148,7 +149,7 @@ import csv
 high_scores_file = "high_scores.csv"
 
 def record_score(final_score):
-    global current_user
+    
 
     if current_user is None:
         print("You must be logged in to record a score\n")
