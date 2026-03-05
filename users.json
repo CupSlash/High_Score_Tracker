@@ -43,5 +43,10 @@
     "password": "88c0f24292f5a29fbf1f76f6d70c6ad2c2947301efea427c111a03555fa09e0e",
     "score": 0,
     "tic_tac_toe_wins": 0
+  },
+  "kensei_tt": {
+    "password": "015ebaa80a76e5ec4aa8f6cfe86d635a9eb4ea1867f1b491dce1b6a2830d5aa4",
+    "score": 1,
+    "tic_tac_toe_wins": 0
   }
 }
