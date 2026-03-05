@@ -4,7 +4,7 @@ def play_number_guessing():
     target = random.randint(1, 100)
     guesses = 0
 
-    print("\n=== Number Guessing Game (1-100) ===")
+    print("\nNumber Guessing Game (1-100)")
     print("Try to guess the number. Fewer guesses = higher score!")
 
     while True:
@@ -17,7 +17,7 @@ def play_number_guessing():
 
         guess = int(raw)
         if guess < 1 or guess > 100:
-            print("Stay within 1 to 100.")
+            print("Invalid, you must input a number between 1-100")
             continue
 
         guesses += 1
@@ -32,7 +32,7 @@ def play_number_guessing():
 
     
 
-    score = 9 - guesses
+    score = guesses
     if score < 0:
         score = 0
 
