@@ -9,7 +9,7 @@ def user_intro():
         choice = input("Choose an option (1-6): ")
 
         if choice == "1":
-            auth.sign_up(user)
+            auth.sign_up()
         elif choice == "2":
             user = auth.sign_in()
 
