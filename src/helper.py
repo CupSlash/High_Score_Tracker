@@ -7,7 +7,21 @@ database = "src/database.csv"
 users_file = 'users.json'
 validity = True
 current_user = None
-
+def add_tic_tac_toe_win():
+    global current_user
+    
+    if current_user is None:
+        print("You must be logged in to record a win\n")
+        return False
+    
+    users = load_users()
+    if current_user not in users:
+        print("Current user not found in users.json")
+        return False
+    
+    users[current_user]["tic_tac_toe_wins"] += 1
+    save_users(users)
+    return True
 def strength_checker():
     password_validity = False
     while password_validity == False:
@@ -87,9 +101,10 @@ def sign_up():
     hashed = hash_password(password)
 
     users[username] = {
-        "password": hashed,
-        "score": 0
-    }
+    "password": hashed,
+    "score": 0,
+    "tic_tac_toe_wins": 0
+}
     save_users(users)
     print("User created succesfully, yay")
 
@@ -168,6 +183,13 @@ def record_score(final_score):
     except Exception as e:
         print(f"COuld not record score: {e}")
         return False
-
-
-
+def view_high_scores():
+    #gets high scores from Json file and prints them in order from highest to lowest
+    users = load_users()
+    scores = []
+    for user, data in users.items():
+        scores.append((user, data.get("score", 0), data.get("tic_tac_toe_wins", 0)))
+    scores.sort(key=lambda x: (x[1], x[2]), reverse=True)
+    print("\n=== High Scores ===")
+    for username, score, wins in scores:
+        print(f"{username}: {score} points, {wins} tc tac toe wins")

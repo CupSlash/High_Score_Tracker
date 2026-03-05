@@ -1,6 +1,8 @@
 #BH, KH, ZC 2nd game.py
+# I know, I know, Tic TacToe is not the best game for a high score tracker, but i just really wanted an excuse to code tic tac toe
 import random
 def game():
+    #introduce userand ask themfor token
     print("Welcome to Tic-Tac-Toe!")
     token = input("Would you like to be X, or O? ").strip().upper()
     if token == "X":
@@ -22,11 +24,13 @@ def game():
             "win_8": [2, 4, 6]}}
 
     def print_board():
+        #print the board
         print(f"{board[0]} {board[1]} {board[2]}")
         print(f"{board[3]} {board[4]} {board[5]}")
         print(f"{board[6]} {board[7]} {board[8]}")
 
     def win_check(symbol):
+        #go through all win amounts and check if any of them have all three as the same token
         for combo in game_data["scores"].values():
             a, b, c = combo
             if board[a] == board[b] == board[c] == symbol:
@@ -34,13 +38,15 @@ def game():
         return False
 
     def resetboard():
+        #really just trashy stuff tomake sure that the computer does not get confused by messy X and Y in the board
         return [i for i, vib in enumerate(board) if vib not in ("X", "O")]
 
     def player_turn():
+        #print the board, ask user for selection, set that slot to  the users token 
         print_board()
         while True:
             try:
-                choice = int(input("Please select the index of the square you choose (1–9): "))
+                choice = int(input("Please select the index of the square you choose (1-9): "))
             except ValueError:
                 print("Please type a number between 1 and 9.")
                 continue
@@ -60,6 +66,7 @@ def game():
         return win_check(user_token)
 
     def computer_turn():
+        #currently this just randomly selects a square from the available squares
         available = resetboard()
         if not available:
             return False
@@ -73,6 +80,7 @@ def game():
     current = "player"
 
     while True:
+        #main menu!
         if not resetboard():
             print("It's a tie! No more moves left.")
             break
@@ -81,6 +89,7 @@ def game():
             if player_turn():
                 count += 1
                 print(f"You won! It took you {count} turns to defeat the computer.")
+                return True
                 break
             count += 1
             current = "computer"
@@ -88,6 +97,7 @@ def game():
             if computer_turn():
                 count += 1
                 print(f"The computer defeated you! It took {count} turns.")
+                return False
                 break
+                
             current = "player"
-    return count
