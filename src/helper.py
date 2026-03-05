@@ -1,4 +1,4 @@
-#BH, KH, ZC 2nd high_score_tracker.py
+#KH, BH, ZC 2nd high_score_tracker.py
 import json
 import os
 import hashlib
@@ -58,7 +58,7 @@ def hash_password(password):
 def sign_up():
     users = load_users()
     
-    print("Creat a new account!")
+    print("Create a new account!")
     
     while True:
         username = input("Enter a new username: ")
@@ -125,6 +125,9 @@ def logout():
         if choice == "l":
                 current_user = None
                 sign_in()
+
+#record the score stuff
+#Kensei Higashi
 import csv
 
 high_scores_file = "high_scores.csv"
@@ -165,3 +168,6 @@ def record_score(final_score):
     except Exception as e:
         print(f"COuld not record score: {e}")
         return False
+
+
+

@@ -3,7 +3,7 @@
 
 ## Description
 
-Compete in games of Tic Tac Toe and number guessing with your friends!
+Compete in games of Tic Tac Toe with your friends!
 
 ## Getting Started
 
@@ -20,7 +20,6 @@ no installing should be required, it is designed to be run in vs code.if you wan
 - click run button
 - create account
 - sign into account
-- choose game
 - play game
 - see who got best score
 
