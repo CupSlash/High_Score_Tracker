@@ -4,9 +4,9 @@ from game import game
 from test_game import play_number_guessing
 def user_intro():
     while True:
-        print("Do you want to: \n1. Sign up \n2. Sign in\n3. Play number guessing game\n4. Play tic tac toe\n5. view high scores \n6. Logout\n7. Exit ")
+        print("Do you want to: \n1. Sign up \n2. Sign in\n3. Play number guessing game\n4. Play tic tac toe\n5. View high scores \n6. Log out\n7. Exit \n")
 
-        choice = input("Choose an options(1-6): ")
+        choice = input("Choose an option (1-6): ")
 
         if choice == "1":
             auth.sign_up(user)
@@ -23,17 +23,17 @@ def user_intro():
 
         elif choice == "6":
             if auth.current_user is None:
-                print("You're not even logged into log out")
+                print("You are already logged out")
             else:
                 auth.logout(user)
         elif choice == "4":
-            print (f"starting game for {auth.current_user}...")
+            print (f"Starting game for {auth.current_user}...")
             if game():
                 auth.add_tic_tac_toe_win(user)
         elif choice == "5":
             auth.view_high_scores(user)
         elif choice == "7":
-            print("Smell you later. hehehehhe") 
+            print("Smell you later!") 
             break              
         else:
             print("Invalid, please try again.")

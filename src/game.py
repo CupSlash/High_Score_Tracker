@@ -66,7 +66,6 @@ def game():
         return win_check(user_token)
 
     def computer_turn():
-        #currently this just randomly selects a square from the available squares
         available = resetboard()
         if not available:
             return False

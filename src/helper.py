@@ -17,7 +17,7 @@ def add_tic_tac_toe_win(current_user):
     
     users = load_users()
     if current_user not in users:
-        print("Current user not found in users.json")
+        print("Current user not found in our database")
         return False
     
     users[current_user]["tic_tac_toe_wins"] += 1
@@ -60,7 +60,7 @@ def load_users():
         try:
             return json.load(f)
         except json.JSONDecodeError:
-            print("user.json is wierd.... resetting to empty")
+            print("Our database failed to load, resetting now.")
             return {}
 
 def save_users(users):
@@ -78,19 +78,16 @@ def sign_up(current_user):
     while True:
         username = input("Enter a new username: ")
 
-        if username == "":
-            print("Username cannot be empty, please be smart")
-            continue
-        
         if username.strip() == "":
-            print("Username cannot be empty")
+            print("Username cannot be empty.")
             continue
+
         if ";" in username or "," in username or " " in username:
-            print("Username cannot have spaces, ;, or ,")
+            print("Username cannot have spaces, ;, or ,.")
             continue
 
         if username in users:
-            print("Username already exists try to add a number to the end of the username or something")
+            print("Username already exists, please use a different name. (tip: add a number or special character!)")
             continue
         break
         
@@ -107,20 +104,20 @@ def sign_up(current_user):
     "tic_tac_toe_wins": 0
 }
     save_users(users)
-    print("User created succesfully, yay")
+    print("User created succesfully! Log in to play!")
 
 def sign_in():
     global current_user
     users = load_users()
 
-    print("Please sign in below\n")
+    print("Please sign in below.\n")
     username = input("What is your username?\n")
     
     if username not in users:
-        print("Sorry man, but that username is not in our database\n")
+        print("Could not find that username in our database. Maybe there was a typo?\n")
         return False
 
-    password = input("What is your password? ")
+    password = input("What is your password?\n")
     hashed = hash_password(password)
 
     if users[username]["password"] ==  hashed:
@@ -128,7 +125,7 @@ def sign_in():
         print("Your username and password have been saved, enjoy the game!\n")
         return current_user
     else:
-        print("Incorrect password")
+        print("Incorrect password.")
         return False
 
 def logout(current_user):
@@ -136,7 +133,7 @@ def logout(current_user):
         choice = input("Would you like to exit (e), or login with a different account (l)?\n")
         if choice == "e":
                 current_user = None
-                print("lets hope you come back. See ya")
+                print("Smell you later!")
                 return
         if choice == "l":
                 current_user = None
@@ -149,18 +146,18 @@ def record_score(final_score, current_user):
     
 
     if current_user is None:
-        print("You must be logged in to record a score\n")
+        print("You must be logged in to record a score.\n")
         return False
 
     users = load_users()
     if current_user not in users:
-        print("Current user not found in users.json")
+        print("Current user not found in the database.")
         return False
     try:
         try:
             final_score_int = int(final_score)
         except ValueError:
-            print("Score must be a number")
+            print("Score must be a number.")
             return False
         #keep the best score
         existing = users[current_user].get("score", 0)
@@ -179,7 +176,7 @@ def record_score(final_score, current_user):
         return True
             
     except Exception as e:
-        print(f"COuld not record score: {e}")
+        print(f"Could not record score: {e}")
         return False
 def view_high_scores(current_user):
     #gets high scores from Json file and prints them in order from highest to lowest
@@ -190,4 +187,4 @@ def view_high_scores(current_user):
     scores.sort(key=lambda x: (x[1], x[2]), reverse=True)
     print("\n=== High Scores ===")
     for username, score, wins in scores:
-        print(f"{username}: {score} points, {wins} tc tac toe wins")
+        print(f"{username}: {score} points, {wins} tic tac toe wins!")
