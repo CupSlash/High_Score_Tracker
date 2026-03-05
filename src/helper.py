@@ -21,7 +21,7 @@ def add_tic_tac_toe_win(current_user):
     save_users(users)
     return True
 
-def passsword_tester(password):
+def password_tester(password):
     score = 0
     
     if len(password) >= 8:
@@ -78,6 +78,7 @@ def passsword_tester(password):
     elif score == 5:
         print("Password strength: Very Strong")
 
+    return score
 
 def load_users():
     if not os.path.exists(users_file):
@@ -120,12 +121,20 @@ def sign_up():
             continue
         break
         
-    password = input("Enter a password: ")
-    passsword_tester(password)
+    while True:
+        password = input("Enter a password: ")
 
-    if password.strip() == "":
-        print("Password cannot be empty. \n")
-        return False
+        if password.strip() == "":
+            print("Password cannot be empty. \n")
+            continue
+    
+        score = password_tester(password)
+
+        if score < 3:
+            print("Password is too weak, please try again")
+            continue
+        else:
+            break
     
     hashed = hash_password(password)
 
@@ -136,6 +145,7 @@ def sign_up():
 }
     save_users(users)
     print("User created succesfully, yay")
+    
 
 def sign_in():
     users = load_users()
