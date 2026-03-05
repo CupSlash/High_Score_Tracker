@@ -1,4 +1,4 @@
-#BH, KH, ZC 2nd high_score_tracker.py
+#KH, BH, ZC 2nd high_score_tracker.py
 import json
 import os
 import hashlib
@@ -6,7 +6,6 @@ import hashlib
 database = "src/database.csv"
 users_file = 'users.json'
 validity = True
-score = 0
 current_user = None
 
 def strength_checker():
@@ -43,7 +42,11 @@ def load_users():
     if not os.path.exists(users_file):
         return {}
     with open(users_file, 'r') as f:
-        return json.load(f)
+        try:
+            return json.load(f)
+        except json.JSONDecodeError:
+            print("user.json is wierd.... resetting to empty")
+            return {}
 
 def save_users(users):
     with open(users_file, 'w') as f:
@@ -55,7 +58,7 @@ def hash_password(password):
 def sign_up():
     users = load_users()
     
-    print("Creat a new account!")
+    print("Create a new account!")
     
     while True:
         username = input("Enter a new username: ")
@@ -63,7 +66,10 @@ def sign_up():
         if username == "":
             print("Username cannot be empty, please be smart")
             continue
-
+        
+        if username.strip() == "":
+            print("Username cannot be empty")
+            continue
         if ";" in username or "," in username or " " in username:
             print("Username cannot have spaces, ;, or ,")
             continue
@@ -74,6 +80,10 @@ def sign_up():
         break
         
     password = input("Enter a password: ")
+    if password.strip() == "":
+        print("Password cannot be empty. \n")
+        return False
+    
     hashed = hash_password(password)
 
     users[username] = {
@@ -105,16 +115,6 @@ def sign_in():
         print("Incorrect password")
         return False
 
-def user_intro():#test
-    while True:
-        choice = input("Do you want to: \n1.sign up \n2.sign in?: ")
-        if choice == "1":
-            sign_up()
-        elif choice == "2":
-            sign_in()
-        else:
-            print("Invalid, please try again.")
-
 def logout():
         global current_user
         choice = input("Would you like to exit (e), or login with a different account (l)?\n")
@@ -125,3 +125,49 @@ def logout():
         if choice == "l":
                 current_user = None
                 sign_in()
+
+#record the score stuff
+#Kensei Higashi
+import csv
+
+high_scores_file = "high_scores.csv"
+
+def record_score(final_score):
+    global current_user
+
+    if current_user is None:
+        print("You must be logged in to record a score\n")
+        return False
+
+    users = load_users()
+    if current_user not in users:
+        print("Current user not found in users.json")
+        return False
+    try:
+        try:
+            final_score_int = int(final_score)
+        except ValueError:
+            print("Score must be a number")
+            return False
+        #keep the best score
+        existing = users[current_user].get("score", 0)
+        if final_score_int > existing:
+            users[current_user]["score"] = final_score_int
+            save_users(users)
+
+        file_exists = os.path.exists(high_scores_file)
+        with open(high_scores_file, "a", newline="") as f:
+                writer = csv.writer(f, delimiter= ";")
+                if not file_exists:
+                    writer.writerow(["username", "score"])
+                writer.writerow([current_user, final_score_int])
+
+        print(f"Score recored for {current_user}: {final_score_int}")
+        return True
+            
+    except Exception as e:
+        print(f"COuld not record score: {e}")
+        return False
+
+
+

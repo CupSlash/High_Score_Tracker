@@ -96,5 +96,3 @@ def game():
                 print (f"the computer defeated you! it took them {count} turns")
             count += 1
             start = 1
-                
-game()
