@@ -20,7 +20,7 @@ def add_tic_tac_toe_win(current_user):
         print("Current user not found in our database")
         return False
     
-    users[current_user]["tic_tac_toe_wins"] += 1
+    users[current_user]["tic_tac_toe_wins"] = users[current_user].get("tic_tac_toe_wins", 0) + 1
     save_users(users)
     return True
 def strength_checker(current_user):
@@ -179,12 +179,17 @@ def record_score(final_score, current_user):
         print(f"Could not record score: {e}")
         return False
 def view_high_scores(current_user):
-    #gets high scores from Json file and prints them in order from highest to lowest
+    #gets high scores from file and prints them in order from highest to lowest
     users = load_users()
     scores = []
-    for user, data in users.items():
-        scores.append((user, data.get("score", 0), data.get("tic_tac_toe_wins", 0)))
+    with open(high_scores_file, "r") as f:
+        reader = csv.reader(f, delimiter=";")
+        next(reader)  # Skip header
+        for row in reader:
+            username, score = row
+            wins = users.get(username, {}).get("tic_tac_toe_wins", 0)
+            scores.append((username, int(score), wins))
     scores.sort(key=lambda x: (x[1], x[2]), reverse=True)
-    print("\n=== High Scores ===")
+    print("=== High Scores ===")
     for username, score, wins in scores:
         print(f"{username}: {score} points, {wins} tic tac toe wins!")
