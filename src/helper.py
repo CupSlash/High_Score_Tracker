@@ -141,9 +141,6 @@ def logout():
         if choice == "l":
                 current_user = None
                 sign_in()
-
-#record the score stuff
-#Kensei Higashi
 import csv
 
 high_scores_file = "high_scores.csv"

@@ -1,6 +1,6 @@
 #BH, KH, ZC 2nd High Score Tracker
 import helper as auth
-from game import *
+from game import game
 from test_game import play_number_guessing
 def user_intro():
     while True:
