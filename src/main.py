@@ -32,7 +32,7 @@ def user_intro():
             if user is None:
                 print("You are already logged out")
             else:
-                user = auth.logout(user)
+                user = auth.logout()
         elif choice == "7":
             print("Smell you later!")
             break
