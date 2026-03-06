@@ -1,3 +1,4 @@
+#import needed library
 import json
 import os
 import hashlib
@@ -6,22 +7,30 @@ import csv
 database = "src/database.csv"
 users_file = "users.json"
 high_scores_file = "high_scores.csv"
+#make a function for adding the tic tac toe wins
 def add_tic_tac_toe_win(current_user):
+    #if there is no current player, idiot proof that
     if current_user is None:
         print("You must be logged in to record a win\n")
         return False
     
     users = load_users()
+    #if the "current user" is not in the database, freak out on them
     if current_user not in users:
         print("Current user not found in our database")
         return False
-    
+
+    #save tic tac toe wins
     users[current_user]["tic_tac_toe_wins"] = users[current_user].get("tic_tac_toe_wins", 0) + 1
     save_users(users)
     return True
+
+#make a password strength tester
 def password_tester(password):
+    #set the score to zero
     score = 0
 
+    #if it is bigger than 8 words, say it is good.
     if len(password) >= 8:
         print("Length (8+ characters): Yes") # print yes or no 
         score += 1 # add point if yes
@@ -36,6 +45,7 @@ def password_tester(password):
         score += 1
     else:
         print("Contains uppercase: No")
+    #do for the lowercase
     lower = False
     for letter in password:
         if letter >= 'a' and letter <= 'z':
@@ -45,6 +55,7 @@ def password_tester(password):
         score += 1
     else:
         print("Contains lowercase: No")
+    #do it for has number
     has_number = False
     for letter in password:
         if letter >= '0' and letter <= '9':
@@ -54,16 +65,19 @@ def password_tester(password):
         score += 1
     else:
         print("Contains numbers: No")
+    #make a var for special
     special = "!@#$%^&*()_+-=[]{}|;:,.<>?"
     has_special = False
     for letter in password:
         if letter in special:
             has_special = True
+    #check for special variables
     if has_special:
         print("Contains special characters: Yes")
         score += 1
     else:
         print("Contains special characters: No")
+    #print out the results of the password strength tester
     print("Strength score:", score, "/ 5")
     if score <= 2:
         print("Password strength: Weak")
@@ -74,6 +88,8 @@ def password_tester(password):
     elif score == 5:
         print("Password strength: Very Strong")
     return score
+
+# Make a function for loading users
 def load_users():
     if not os.path.exists(users_file):
         return {}
@@ -83,19 +99,26 @@ def load_users():
         except json.JSONDecodeError:
             print("Our database failed to load, resetting now.")
             return {}
+#make a function for saving users
 def save_users(users):
     with open(users_file, "w") as f:
         json.dump(users, f, indent=2)
+
+#make a function for hashing the password
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
+#make the function for signing up
 def sign_up():
+    #make a var where you call the load user
     users = load_users()
     print("Create a new account!")
+    #while true loop
     while True:
         username = input("Enter a new username: ")
         if username.strip() == "":
             print("Username cannot be empty.")
             continue
+        #idiot proof
         if ";" in username or "," in username or " " in username:
             print("Username cannot have spaces, ;, or ,.")
             continue
@@ -181,14 +204,17 @@ def record_score(final_score, current_user):
         print(f"Could not record score: {e}")
         return False
 
+#function for viewing high score
 def view_high_scores():
+    #user is the load user function result
     users = load_users()
+    #make an empty list for scores
     scores = []
-    #only print top ten high scores, sorted by score and tic tac toe wins as tiebrakers.
+    #only print top ten high scores, sorted by score and tic tac toe wins as tiebreakers.
     for user, data in users.items():
         scores.append((user, data.get("score", 0), data.get("tic_tac_toe_wins", 0)))
         scores.sort(key=lambda x: (x[1], x[2]), reverse=True)
-
+    #and print out the high scores
     print("\n=== High Scores ===")
     for i, (username, score, wins) in enumerate(scores[:10], start=1):
         print(f"{i}. {username}: {score} points, {wins} tic tac toe wins!")
