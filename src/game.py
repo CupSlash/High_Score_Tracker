@@ -12,6 +12,7 @@ def game():
         user_token = "O"
         computer_token = "X"
     board = [str(i) for i in range(1, 10)]
+    #all possible win conditions
     game_data = {
         "scores": {
             "win_1": [0, 1, 2],
@@ -38,7 +39,7 @@ def game():
         return False
 
     def resetboard():
-        #really just trashy stuff tomake sure that the computer does not get confused by messy X and Y in the board
+        #really just trashy stuff to make sure that the computer does not get confused by messy X and Y in the board. also helps with tie checking
         return [i for i, vib in enumerate(board) if vib not in ("X", "O")]
 
     def player_turn():
@@ -50,7 +51,7 @@ def game():
             except ValueError:
                 print("Please type a number between 1 and 9.")
                 continue
-
+            #idiot proofing
             if choice < 1 or choice > 9:
                 print("That is not a valid square.")
                 continue
@@ -66,6 +67,7 @@ def game():
         return win_check(user_token)
 
     def computer_turn():
+        #currently this just selects a random non-selected spot. i wish i could have done better, but time constraints
         available = resetboard()
         if not available:
             return False
@@ -75,6 +77,7 @@ def game():
         return win_check(computer_token)
 
     count = 0
+    #starting turn is player
     current = "player"
 
     while True:
@@ -97,5 +100,5 @@ def game():
                 print(f"The computer defeated you! It took {count} turns.")
                 return False
                 break
-                
+            
             current = "player"

@@ -18,5 +18,10 @@
     "password": "3be2b449a302a3275b9ab2a8f7d6f77ad9c509102b9f13a19da9895db108348f",
     "score": 0,
     "tic_tac_toe_wins": 0
+  },
+  "Briggs": {
+    "password": "6d3352d6a6513fe8db54cb8750284ed7b8bb7a573ecdbe96a78fef41f8eeda87",
+    "score": 97,
+    "tic_tac_toe_wins": 2
   }
 }
