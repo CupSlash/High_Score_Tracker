@@ -48,5 +48,10 @@
     "password": "015ebaa80a76e5ec4aa8f6cfe86d635a9eb4ea1867f1b491dce1b6a2830d5aa4",
     "score": 1,
     "tic_tac_toe_wins": 1
+  },
+  "naynay": {
+    "password": "244cdc3febbeb75beb81057c293f522a396f1e43921dfadf21b1310761467b4b",
+    "score": 8,
+    "tic_tac_toe_wins": 0
   }
 }
