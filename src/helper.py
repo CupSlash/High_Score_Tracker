@@ -2,7 +2,7 @@ import json
 import os
 import hashlib
 import csv
-
+#define files
 database = "src/database.csv"
 users_file = "users.json"
 high_scores_file = "high_scores.csv"
