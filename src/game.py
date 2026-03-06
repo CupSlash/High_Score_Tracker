@@ -2,7 +2,7 @@
 # I know, I know, Tic TacToe is not the best game for a high score tracker, but i just really wanted an excuse to code tic tac toe
 import random
 def game():
-    #introduce userand ask themfor token
+    #introduce user and ask them for token
     print("Welcome to Tic-Tac-Toe!")
     token = input("Would you like to be X, or O? ").strip().upper()
     if token == "X":

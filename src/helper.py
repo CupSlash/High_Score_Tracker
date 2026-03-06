@@ -20,39 +20,64 @@ def add_tic_tac_toe_win(current_user):
     save_users(users)
     return True
 
+def password_tester(password):
+    score = 0
+    
+    if len(password) >= 8:
+        print("Length (8+ characters): Yes") # print yes or no 
+        score += 1 # add point if yes
+    else:
+        print("Length (8+ characters): No") # print yes or no
+    upper = False
+    for letter in password:
+        if letter >= 'A' and letter <= 'Z':
+            upper = True
+    if upper:
+        print("Contains uppercase: Yes") # print yes or no 
+        score += 1
+    else:
+        print("Contains uppercase: No")
+    lower = False
+    for letter in password:
+        if letter >= 'a' and letter <= 'z':
+            lower = True
+    if lower:
+        print("Contains lowercase: Yes")
+        score += 1
+    else:
+        print("Contains lowercase: No")
+    has_number = False
+    for letter in password:
+        if letter >= '0' and letter <= '9':
+            has_number = True
+    if has_number:
+        print("Contains numbers: Yes")
+        score += 1
+    else:
+        print("Contains numbers: No")
+    special = "!@#$%^&*()_+-=[]{}|;:,.<>?"
+    has_special = False
+    for letter in password:
+        if letter in special:
+            has_special = True
+    if has_special:
+        print("Contains special characters: Yes")
+        score += 1
+    else:
+        print("Contains special characters: No")
+    
+    print("Strength score:", score, "/ 5")
+    
+    if score <= 2:
+        print("Password strength: Weak")
+    elif score == 3:
+        print("Password strength: Moderate")
+    elif score == 4:
+        print("Password strength: Strong")
+    elif score == 5:
+        print("Password strength: Very Strong")
 
-def strength_checker():
-    password_validity = False
-    while password_validity is False:
-        password = input(
-            "Please enter your password to play. Your password must match 3 or more "
-            "of the following requirements: Contains special character(s), contains "
-            "number(s), contains lowercase letter(s), contains uppercase letter(s), "
-            "and contains at least 8 characters.\n"
-        )
-        total = 0
-        if password == "password":
-            print("Ain't no way your password is password.\n")
-            continue
-        if len(password) >= 8:
-            total += 1
-        if any(char.isupper() for char in password):
-            total += 1
-        if any(char.islower() for char in password):
-            total += 1
-        if any(char.isdigit() for char in password):
-            total += 1
-        if any(not char.isalnum() for char in password):
-            total += 1
-        if total <= 2:
-            print("Password strength: Weak.\n")
-        elif total in [3, 4]:
-            print("Password strength: Moderate.\n")
-        elif total == 5:
-            print("Password strength: Secure.\n")
-        print(f"Your password strength is a {total} out of 5.\n")
-        password_validity = True
-        return password
+    return score
 
 def load_users():
     if not os.path.exists(users_file):
@@ -90,10 +115,21 @@ def sign_up():
             continue
         break
         
-    password = input("Enter a password: ")
-    if password.strip() == "":
-        print("Password cannot be empty.\n")
-        return False
+    while True:
+        password = input("Enter a password: ")
+
+        if password.strip() == "":
+            print("Password cannot be empty. \n")
+            continue
+    
+        score = password_tester(password)
+
+        if score < 3:
+            print("Password is too weak, please try again")
+            continue
+        else:
+            break
+    
     hashed = hash_password(password)
     users[username] = {
         "password": hashed,
@@ -101,9 +137,8 @@ def sign_up():
         "tic_tac_toe_wins": 0
     }
     save_users(users)
-    print("User created successfully! Log in to play!")
-    return True
-
+    print("User created succesfully! Log in to play!")
+    
 
 def sign_in():
     users = load_users()
@@ -113,24 +148,28 @@ def sign_in():
     if username not in users:
         print("Could not find that username in our database. Maybe there was a typo?\n")
         return None
+
     password = input("What is your password?\n")
     hashed = hash_password(password)
-    if users[username]["password"] == hashed:
+
+    if users[username]["password"] ==  hashed:
         print("Your username and password have been saved, enjoy the game!\n")
         return username
     else:
-        print("Incorrect password.")
+        print("Incorrect password")
         return None
+def logout():
+        
+        choice = input("Would you like to exit (e), or login with a different account (l)?\n")
+        if choice == "e":
+                print("Smell ya later!")
+                return None
+        if choice == "l":
+                return sign_in()
 
-
-def logout(current_user):
-    choice = input("Would you like to exit (e), or login with a different account (l)?\n")
-    if choice == "e":
-        print("Smell you later!")
-        return None
-    if choice == "l":
-        return sign_in()
-    return current_user
+#record the score stuff
+#Kensei Higashi
+import csv
 
 
 def record_score(final_score, current_user):
@@ -163,21 +202,14 @@ def record_score(final_score, current_user):
         print(f"Could not record score: {e}")
         return False
 
-
 def view_high_scores():
+
     users = load_users()
     scores = []
-    if not os.path.exists(high_scores_file):
-        print("No high scores yet.")
-        return
-    with open(high_scores_file, "r") as f:
-        reader = csv.reader(f, delimiter=";")
-        next(reader, None)
-        for row in reader:
-            username, score = row
-            wins = users.get(username, {}).get("tic_tac_toe_wins", 0)
-            scores.append((username, int(score), wins))
-    scores.sort(key=lambda x: (x[1], x[2]), reverse=True)
-    print("=== High Scores ===")
+
+    for user, data in users.items():
+        scores.append((user, data.get("score", 0), data.get("tic_tac_toe_wins", 0)))
+        scores.sort(key=lambda x: (x[1], x[2]), reverse=True)
+    print("\n=== High Scores ===")
     for username, score, wins in scores:
         print(f"{username}: {score} points, {wins} tic tac toe wins!")

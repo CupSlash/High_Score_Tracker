@@ -32,8 +32,8 @@ def play_number_guessing():
 
     
 
-    score = guesses
-    if score <= 0:
+    score = 100 - guesses
+    if score < 0:
         score = 0
 
     print(f"You took {guesses} guesses. Your score: {score}\n")
