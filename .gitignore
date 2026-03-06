@@ -1,3 +1,4 @@
-__pycache__
-high_scores.csv
-users.json
+src/__pycache__/game.cpython-312.pyc
+src/__pycache__/game.cpython-312.pyc
+src/__pycache__/helper.cpython-312.pyc
+src/__pycache__/test_game.cpython-312.pyc
