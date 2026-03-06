@@ -32,7 +32,7 @@ def play_number_guessing():
 
     
 
-    score = guesses
+    score = 100 - guesses
     if score < 0:
         score = 0
 

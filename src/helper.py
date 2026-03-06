@@ -217,13 +217,15 @@ def record_score(final_score, current_user):
     except Exception as e:
         print(f"COuld not record score: {e}")
         return False
+
 def view_high_scores():
-    #gets high scores from Json file and prints them in order from highest to lowest
+
     users = load_users()
     scores = []
+
     for user, data in users.items():
         scores.append((user, data.get("score", 0), data.get("tic_tac_toe_wins", 0)))
-    scores.sort(key=lambda x: (x[1], x[2]), reverse=True)
+        scores.sort(key=lambda x: (x[1], x[2]), reverse=True)
     print("\n=== High Scores ===")
     for username, score, wins in scores:
         print(f"{username}: {score} points, {wins} tc tac toe wins")
