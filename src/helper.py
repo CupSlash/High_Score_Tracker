@@ -19,10 +19,9 @@ def add_tic_tac_toe_win(current_user):
     users[current_user]["tic_tac_toe_wins"] = users[current_user].get("tic_tac_toe_wins", 0) + 1
     save_users(users)
     return True
-
 def password_tester(password):
     score = 0
-    
+
     if len(password) >= 8:
         print("Length (8+ characters): Yes") # print yes or no 
         score += 1 # add point if yes
@@ -65,9 +64,7 @@ def password_tester(password):
         score += 1
     else:
         print("Contains special characters: No")
-    
     print("Strength score:", score, "/ 5")
-    
     if score <= 2:
         print("Password strength: Weak")
     elif score == 3:
@@ -76,9 +73,7 @@ def password_tester(password):
         print("Password strength: Strong")
     elif score == 5:
         print("Password strength: Very Strong")
-
     return score
-
 def load_users():
     if not os.path.exists(users_file):
         return {}
@@ -88,17 +83,11 @@ def load_users():
         except json.JSONDecodeError:
             print("Our database failed to load, resetting now.")
             return {}
-
-
 def save_users(users):
     with open(users_file, "w") as f:
         json.dump(users, f, indent=2)
-
-
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
-
-
 def sign_up():
     users = load_users()
     print("Create a new account!")
@@ -117,19 +106,15 @@ def sign_up():
         
     while True:
         password = input("Enter a password: ")
-
         if password.strip() == "":
             print("Password cannot be empty. \n")
             continue
-    
         score = password_tester(password)
-
         if score < 3:
             print("Password is too weak, please try again")
             continue
         else:
             break
-    
     hashed = hash_password(password)
     users[username] = {
         "password": hashed,
@@ -138,8 +123,6 @@ def sign_up():
     }
     save_users(users)
     print("User created succesfully! Log in to play!")
-    
-
 def sign_in():
     users = load_users()
     print("Please sign in below.\n")
@@ -159,19 +142,15 @@ def sign_in():
         print("Incorrect password")
         return None
 def logout():
-        
         choice = input("Would you like to exit (e), or login with a different account (l)?\n")
         if choice == "e":
                 print("Smell ya later!")
                 return None
         if choice == "l":
                 return sign_in()
-
 #record the score stuff
 #Kensei Higashi
 import csv
-
-
 def record_score(final_score, current_user):
     if current_user is None:
         print("You must be logged in to record a score.\n")
