@@ -182,13 +182,13 @@ def record_score(final_score, current_user):
         return False
 
 def view_high_scores():
-
     users = load_users()
     scores = []
-
+    #only print top ten high scores, sorted by score and tic tac toe wins as tiebrakers.
     for user, data in users.items():
         scores.append((user, data.get("score", 0), data.get("tic_tac_toe_wins", 0)))
         scores.sort(key=lambda x: (x[1], x[2]), reverse=True)
+
     print("\n=== High Scores ===")
-    for username, score, wins in scores:
-        print(f"{username}: {score} points, {wins} tic tac toe wins!")
+    for i, (username, score, wins) in enumerate(scores[:10], start=1):
+        print(f"{i}. {username}: {score} points, {wins} tic tac toe wins!")
